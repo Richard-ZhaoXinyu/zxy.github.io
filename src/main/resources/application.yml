@@ -1,0 +1,45 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/mybatis
+    username: root
+    password: hsp
+
+    druid:
+
+      #监控SpringBean
+      aop-patterns: com.zxy.boot.*
+      stat-view-servlet:
+        enabled: true
+        login-username: admin
+        login-password: admin123
+        reset-enable: false
+        #        访问监控页面的路径  不写默认为/druid/*
+        url-pattern: /druid/*
+
+      web-stat-filter:
+        enabled: true
+        url-pattern: /*
+        exclusions: "*.js,*.gif,*.jpg,*.png,*.css,*.ico,/druid/*"
+
+      #      filters: stat,wall
+      filter:
+        stat:
+          enabled: true
+          log-slow-sql: true
+          slow-sql-millis: 2000
+
+        wall:
+          enabled: true
+
+  jdbc:
+    template:
+      query-timeout: 20
+
+#配置mybatis规则，使用MyBatisPlus则此项配置无效
+#mybatis:
+#  config-location:  classpath:mybatis/mybatis-config.xml
+#  mapper-locations: classpath:mybatis/dao/*.xml
+#  configuration:
+#    map-underscore-to-camel-case: true
+
